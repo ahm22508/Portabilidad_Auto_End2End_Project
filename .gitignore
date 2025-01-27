@@ -1,0 +1,11 @@
+pom.xml
+Run.bat
+Portabilidad_Auto_End2End.jar
+target/*
+out/*
+META-INF/*
+data/*
+.idea/*
+.git/*
+img/*
+*.jar
