@@ -56,18 +56,18 @@ public class Main extends Application {
         Button ButtonPA = new Button("PA");
         ButtonPA.setOnAction(event -> {
             try {
-                Check check = new Check();
-                Preparation prepare = new Preparation();
-                FileLogging fileLog = new FileLogging();
-                prepare.prepareSystem();
-                check.generalCheck();
-                check.PressOnPA();
-                check.PressOnIdentificadorDeServicio();
-                check.CheckPA();
-                check.EndCheck();
-                fileLog.SaveFile();
-                fileLog.CloseFile();
-                fileLog.ShowFile();
+                 Check check = new Check();
+                 Preparation prepare = new Preparation();
+                 FileLogging fileLog = new FileLogging();
+                 FileHandling Handle = new FileHandling();
+                 DataExtraction extract = new DataExtraction();
+                 GetFile getFile = new GetFile();
+                 getFile.ExecuteGetFileMethods();
+                 Handle.ExecuteFileHandlingMethods();
+                 extract.ExtractNumeroMovil();
+                 check.ExecuteCheckPAMethods();
+                 fileLog.ExecuteFileLoggingMethods();
+
             } catch (Exception e) {
                 System.out.println("Exception Occured: " + e.getMessage().toString());
             }
@@ -83,23 +83,17 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(ButtonAC, 290.0);
         ButtonAC.setOnAction(event -> {
             try {
-                Check check = new Check();
-                Preparation prepare = new Preparation();
-                FileLogging fileLog = new FileLogging();
-                prepare.prepareSystem();
-                check.generalCheck();
-                check.PressOnPA();
-                check.PressOnIdentificadorDeServicio();
-                check.CheckIfIsNotPA();
-                check.EndCheck();
-                check.generalCheck();
-                check.PressOnAC();
-                check.PressOnIdentificadorDeServicio();
-                check.CheckAc();
-                check.EndCheck();
-                fileLog.SaveFile();
-                fileLog.CloseFile();
-                fileLog.ShowFile();
+                  Check check = new Check();
+                  Preparation prepare = new Preparation();
+                  FileLogging fileLog = new FileLogging();
+                  FileHandling Handle = new FileHandling();
+                  DataExtraction extract = new DataExtraction();
+                  GetFile getFile = new GetFile();
+                  getFile.ExecuteGetFileMethods();
+                  Handle.ExecuteFileHandlingMethods();
+                  extract.ExtractNumeroMovil();
+                  check.ExecuteCheckACMethods();
+                  fileLog.ExecuteFileLoggingMethods();
             } catch (Exception E) {
                 System.out.println("Exception Occured: " + E.getMessage().toString());
             }
@@ -114,7 +108,6 @@ public class Main extends Application {
         frame.show();
     }
     public static void main(String[] args) throws Exception {
-
            launch(args);
     }
 }

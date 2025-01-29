@@ -1,6 +1,4 @@
-package NewFunctionality;
-
-import Portabilidad.Check;
+package Portabilidad;
 
 import java.awt.event.KeyEvent;
 
@@ -39,7 +37,7 @@ public class FileHandling extends Check {
         getRobot().keyPress(KeyEvent.VK_V);
         getRobot().keyRelease(KeyEvent.VK_CONTROL);
         getRobot().keyRelease(KeyEvent.VK_V);
-        Thread.sleep(300);
+        Thread.sleep(1000);
         getRobot().keyPress(KeyEvent.VK_ENTER);
         getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
@@ -50,7 +48,7 @@ public class FileHandling extends Check {
         ProcessBuilder proc = new ProcessBuilder();
         proc.command(Command);
         proc.start();
-        Thread.sleep(11000);
+        Thread.sleep(12000);
         getRobot().mouseMove(794, 90);
         getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
@@ -58,7 +56,7 @@ public class FileHandling extends Check {
 
     public void SearchToSheet() throws Exception {
         Thread.sleep(700);
-        String SheetName = "Sheet1";
+        String SheetName = "REVISION";
         getRobot().keyPress(KeyEvent.VK_F5);
         getRobot().keyRelease(KeyEvent.VK_F5);
         Thread.sleep(500);
@@ -75,8 +73,6 @@ public class FileHandling extends Check {
         Thread.sleep(200);
         getRobot().keyPress(KeyEvent.VK_ENTER);
         getRobot().keyRelease(KeyEvent.VK_ENTER);
-
-
     }
 
     public void TransformFileToText() throws Exception {
@@ -125,7 +121,20 @@ public class FileHandling extends Check {
         Thread.sleep(200);
         getRobot().keyPress(KeyEvent.VK_ENTER);
         getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Thread.sleep(500);
+        getRobot().keyPress(KeyEvent.VK_ENTER);
+        getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(200);
-
     }
+
+   public void ExecuteFileHandlingMethods() throws Exception{
+        RenameFile();
+        MoveFile();
+        OpenFile();
+        SearchToSheet();
+        TransformFileToText();
+        UpdateAndSaveFile();
+   }
+
+
 }

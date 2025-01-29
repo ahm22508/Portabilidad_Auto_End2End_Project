@@ -17,6 +17,7 @@ public class Check extends Preparation{
     private final Pattern RecognizePopUp = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\PopUp.png");
     private final Pattern activationImage = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\ActivationImage.png");
 
+
     public Check() throws Exception {
         pcScreen = new Screen();
     }
@@ -78,15 +79,20 @@ public class Check extends Preparation{
     }
 
     public void CheckAc() throws Exception {
-        for (Row Lineas : FileLogging.getSheet()) {
-            Cell LineaCell = Lineas.getCell(0);
+        Cell LineaCell;
+        String Linea;
+        for (Row Lineas : FileLogging.GetSheet()) {
+             LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
-                String Linea = LineaCell.getStringCellValue();
+                 Linea = LineaCell.getStringCellValue();
                 for (char digit : Linea.toCharArray()) {
                     getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(digit));
                 }
             }
             ExecuteCheck();
+            if (pcScreen.has(activationImage) && !pcScreen.has(RecognizePopUp)) {
+                Lineas.createCell(1).setCellValue("Activa");
+            }
             if (pcScreen.has(RecognizePopUp)) {
                 Lineas.createCell(1).setCellValue("No Activa");
                 //Clean Error.
@@ -94,18 +100,17 @@ public class Check extends Preparation{
                 getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
                 getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
             }
-            if (pcScreen.has(activationImage) && !pcScreen.has(RecognizePopUp)) {
-                Lineas.createCell(1).setCellValue("Activa");
-            }
             CleanCheck();
         }
     }
 
     public void CheckPA() throws Exception {
-        for (Row Lineas : FileLogging.getSheet()) {
-            Cell LineaCell = Lineas.getCell(0);
+        Cell LineaCell;
+        String Linea;
+        for (Row Lineas : FileLogging.GetSheet()) {
+             LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
-                String Linea = LineaCell.getStringCellValue();
+                 Linea = LineaCell.getStringCellValue();
                 for (char digit : Linea.toCharArray()) {
                     getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(digit));
                 }
@@ -125,10 +130,12 @@ public class Check extends Preparation{
         }
     }
     public void CheckIfIsNotPA() throws Exception{
-        for (Row Lineas : FileLogging.getSheet()) {
-            Cell LineaCell = Lineas.getCell(0);
+        Cell LineaCell;
+        String Linea;
+        for (Row Lineas : FileLogging.GetSheet()) {
+             LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
-                String Linea = LineaCell.getStringCellValue();
+                 Linea = LineaCell.getStringCellValue();
                 for (char digit : Linea.toCharArray()) {
                     getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(digit));
                 }
@@ -164,5 +171,27 @@ public class Check extends Preparation{
         getRobot().mouseMove(977, 764);
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+
+    public void ExecuteCheckPAMethods() throws Exception{
+        prepareSystem();
+        generalCheck();
+        PressOnPA();
+        PressOnIdentificadorDeServicio();
+        CheckPA();
+        EndCheck();
+    }
+    public void ExecuteCheckACMethods() throws Exception{
+         prepareSystem();
+         generalCheck();
+         PressOnPA();
+         PressOnIdentificadorDeServicio();
+         CheckIfIsNotPA();
+         EndCheck();
+         generalCheck();
+         PressOnAC();
+         PressOnIdentificadorDeServicio();
+         CheckAc();
+         EndCheck();
     }
 }
