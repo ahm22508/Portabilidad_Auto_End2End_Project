@@ -13,6 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 @SuppressWarnings("ALL")
 public class Main extends Application {
@@ -56,17 +60,44 @@ public class Main extends Application {
         Button ButtonPA = new Button("PA");
         ButtonPA.setOnAction(event -> {
             try {
-                 Check check = new Check();
-                 Preparation prepare = new Preparation();
-                 FileLogging fileLog = new FileLogging();
-                 FileHandling Handle = new FileHandling();
-                 DataExtraction extract = new DataExtraction();
-                 GetFile getFile = new GetFile();
-                 getFile.ExecuteGetFileMethods();
-                 Handle.ExecuteFileHandlingMethods();
-                 extract.ExtractNumeroMovil();
-                 check.ExecuteCheckPAMethods();
-                 fileLog.ExecuteFileLoggingMethods();
+                GetFile getFile = new GetFile();
+                Preparation prepare = new Preparation();
+                Check check = new Check();
+                FileHandling Handle = new FileHandling();
+                DataExtraction extract = new DataExtraction();
+                Pre_activation preactivar = new Pre_activation();
+                FileLogging fileLog = new FileLogging();
+
+               //  getFile.ExecuteGetFileMethods();
+               //  Handle.ExecuteFileHandlingMethods();
+
+             Thread FirstThread = new Thread(()->{
+                    try {
+
+                      prepare.prepareSystem();
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                });
+                Thread SecondThread = new Thread(()->{
+                   try {
+                       extract.GetOperationFile();
+                       extract.GetResultSheet();
+                       extract.GetPlanesSheet();
+                       extract.ExtractNumeroMovil();
+                   }
+                   catch (Exception e){
+                       e.printStackTrace();
+                   }
+                });
+                FirstThread.start();
+                SecondThread.start();
+                FirstThread.join();
+                SecondThread.join();
+                check.ExecuteCheckPAMethods();
+                preactivar.FixError();
+                fileLog.ExecuteFileLoggingMethods();
 
             } catch (Exception e) {
                 System.out.println("Exception Occured: " + e.getMessage().toString());
@@ -83,17 +114,40 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(ButtonAC, 290.0);
         ButtonAC.setOnAction(event -> {
             try {
-                  Check check = new Check();
-                  Preparation prepare = new Preparation();
-                  FileLogging fileLog = new FileLogging();
-                  FileHandling Handle = new FileHandling();
-                  DataExtraction extract = new DataExtraction();
-                  GetFile getFile = new GetFile();
+                GetFile getFile = new GetFile();
+                Preparation prepare = new Preparation();
+                Check check = new Check();
+                FileHandling Handle = new FileHandling();
+                DataExtraction extract = new DataExtraction();
+                Pre_activation preactivar = new Pre_activation();
+                FileLogging fileLog = new FileLogging();
                   getFile.ExecuteGetFileMethods();
                   Handle.ExecuteFileHandlingMethods();
-                  extract.ExtractNumeroMovil();
-                  check.ExecuteCheckACMethods();
-                  fileLog.ExecuteFileLoggingMethods();
+                 Thread FirstThread = new Thread(()->{
+                      try {
+                          extract.GetOperationFile();
+                          extract.GetResultSheet();
+                          extract.ExtractNumeroMovil();
+                      }
+                      catch (Exception e){
+                          e.getCause();
+                      }
+                  });
+                  Thread SecondThread = new Thread(()->{
+                      try {
+
+                          prepare.prepareSystem();
+                      }
+                      catch (Exception e){
+                          e.getCause();
+                      }
+                  });
+                SecondThread.start();
+                FirstThread.start();
+                SecondThread.join();
+                FirstThread.join();
+                check.ExecuteCheckACMethods();
+                fileLog.ExecuteFileLoggingMethods();
             } catch (Exception E) {
                 System.out.println("Exception Occured: " + E.getMessage().toString());
             }

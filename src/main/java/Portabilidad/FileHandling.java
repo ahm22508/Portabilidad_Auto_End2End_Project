@@ -1,6 +1,12 @@
 package Portabilidad;
 
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class FileHandling extends Check {
 
@@ -54,13 +60,26 @@ public class FileHandling extends Check {
         getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
     }
 
+    //Revision Code.
+    public String FileIterator() throws IOException {
+        String SheetName ="";
+        File OperationFile = new File("C:\\Portabilidad_Auto_End2End\\data\\operation.xlsx");
+        FileInputStream AccessToFile = new FileInputStream(OperationFile);
+        Workbook iterateSheets = new XSSFWorkbook(AccessToFile);
+        for(int i = 0; i < iterateSheets.getNumberOfSheets(); i++){
+            if(iterateSheets.getSheetName(i).contains("Revision") || iterateSheets.getSheetName(i).contains("sheet1") || iterateSheets.getSheetName(i).contains("revision") || iterateSheets.getSheetName(i).contains("Sheet1")|| iterateSheets.getSheetName(i).contains("REVISION") || iterateSheets.getSheetName(i).contains("SHEET1")){
+                SheetName = iterateSheets.getSheetName(i);
+            }
+        }
+        return SheetName;
+    }
+   // Review Code.
     public void SearchToSheet() throws Exception {
         Thread.sleep(700);
-        String SheetName = "REVISION";
         getRobot().keyPress(KeyEvent.VK_F5);
         getRobot().keyRelease(KeyEvent.VK_F5);
         Thread.sleep(500);
-        for (char letter : SheetName.toCharArray()) {
+        for (char letter : FileIterator().toCharArray()) {
             Thread.sleep(100);
             getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(letter));
         }
@@ -114,17 +133,18 @@ public class FileHandling extends Check {
         getRobot().mouseMove(19, 75);
         getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
-        Thread.sleep(8000);
+        Thread.sleep(9000);
+        getRobot().keyPress(KeyEvent.VK_CONTROL);
+        getRobot().keyPress(KeyEvent.VK_S);
+        getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        getRobot().keyRelease(KeyEvent.VK_S);
+        Thread.sleep(800);
         getRobot().mouseMove(1510, 22);
         getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
-        Thread.sleep(200);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(500);
         getRobot().keyPress(KeyEvent.VK_ENTER);
         getRobot().keyRelease(KeyEvent.VK_ENTER);
-        Thread.sleep(200);
     }
 
    public void ExecuteFileHandlingMethods() throws Exception{
@@ -134,6 +154,7 @@ public class FileHandling extends Check {
         SearchToSheet();
         TransformFileToText();
         UpdateAndSaveFile();
+        Thread.sleep(1000);
    }
 
 

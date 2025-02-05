@@ -23,7 +23,6 @@ public class Check extends Preparation{
     }
 
 
-
     public void generalCheck() throws Exception {
 
         //Press on Select
@@ -81,7 +80,7 @@ public class Check extends Preparation{
     public void CheckAc() throws Exception {
         Cell LineaCell;
         String Linea;
-        for (Row Lineas : FileLogging.GetSheet()) {
+        for (Row Lineas : DataExtraction.GetResultSheet()) {
              LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
                  Linea = LineaCell.getStringCellValue();
@@ -107,7 +106,7 @@ public class Check extends Preparation{
     public void CheckPA() throws Exception {
         Cell LineaCell;
         String Linea;
-        for (Row Lineas : FileLogging.GetSheet()) {
+        for (Row Lineas : DataExtraction.GetResultSheet()) {
              LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
                  Linea = LineaCell.getStringCellValue();
@@ -132,7 +131,7 @@ public class Check extends Preparation{
     public void CheckIfIsNotPA() throws Exception{
         Cell LineaCell;
         String Linea;
-        for (Row Lineas : FileLogging.GetSheet()) {
+        for (Row Lineas : DataExtraction.GetResultSheet()) {
              LineaCell = Lineas.getCell(0);
             if (LineaCell != null) {
                  Linea = LineaCell.getStringCellValue();
@@ -174,7 +173,6 @@ public class Check extends Preparation{
     }
 
     public void ExecuteCheckPAMethods() throws Exception{
-        prepareSystem();
         generalCheck();
         PressOnPA();
         PressOnIdentificadorDeServicio();
@@ -182,7 +180,6 @@ public class Check extends Preparation{
         EndCheck();
     }
     public void ExecuteCheckACMethods() throws Exception{
-         prepareSystem();
          generalCheck();
          PressOnPA();
          PressOnIdentificadorDeServicio();
