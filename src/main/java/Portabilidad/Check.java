@@ -13,13 +13,12 @@ import java.awt.event.KeyEvent;
 public class Check extends Preparation{
 
 
-    private final Screen pcScreen;
+    private final Screen pcScreen = new Screen();
     private final Pattern RecognizePopUp = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\PopUp.png");
     private final Pattern activationImage = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\ActivationImage.png");
 
 
     public Check() throws Exception {
-        pcScreen = new Screen();
     }
 
 
@@ -74,7 +73,7 @@ public class Check extends Preparation{
         getRobot().mouseMove(1476, 464);
         getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
-        Thread.sleep(1047);
+        Thread.sleep(1090);
     }
 
     public void CheckAc() throws Exception {

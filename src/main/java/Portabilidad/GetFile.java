@@ -1,8 +1,6 @@
 package Portabilidad;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,19 +8,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.event.KeyEvent;
 import java.time.Duration;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class GetFile extends Preparation{
 
-    private String ID_Case;
+
     private  WebDriverWait wait;
     private  WebDriver driver;
+    private int counterPA = 17;
+    private int PanNumber = 4;
+    private int CounterAC = 14;
     private final By IniciarButton = By.xpath("//div[@class='appmagic-button-label no-focus-outline']");
-    private final By IntroduceCase = By.xpath("//input[@class='appmagic-text mousetrap block-undo-redo']");
-    private final By PanIcon = By.xpath("(//div[@class='powerapps-icon no-focus-outline'])[4]");
+    private static final ArrayList <By> CasesReferPA = new ArrayList<>();
+    private static final ArrayList <By> CasesReferAC = new ArrayList<>();
+
 
     public GetFile() throws Exception {
+    }
 
+    public static ArrayList<By> getCaseReferPA(){
+        return CasesReferPA;
+
+    }
+    public static ArrayList<By> getCaseReferAC(){
+        return CasesReferAC;
     }
 
     public void Switching() {
@@ -34,11 +47,7 @@ public class GetFile extends Preparation{
         driver.switchTo().defaultContent();
     }
 
-    public void GetIdCase() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Introduce the case Number: ");
-        ID_Case = scan.next();
-    }
+
     public void StartBrowser(){
         driver = new EdgeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(200));
@@ -63,19 +72,61 @@ public class GetFile extends Preparation{
         actions.keyDown(Keys.ENTER).build().perform();
     }
 
-    public void IntroduceCase() {
+
+    public void SearchPACases(){
         Switching();
-        wait.until(ExpectedConditions.elementToBeClickable(IntroduceCase));
-        driver.findElement(IntroduceCase).sendKeys(ID_Case);
+        wait.until(ExpectedConditions.textMatches(By.xpath("(//div[@spellcheck='false'])["+counterPA+"]") , Pattern.compile("\\b([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])/(\\d{4})\\b")));
+        String datePreactivation = driver.findElement(By.xpath("(//div[@spellcheck='false'])["+counterPA+"]")).getText();
         SwitchingOff();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy");
+       LocalDate DateCase = LocalDate.parse(datePreactivation , format);
+        Period PreActivationperiod = Period.between(DateCase , LocalDate.now());
+        if (PreActivationperiod.getDays() > 0){
+            return;
+        }
+        if (PreActivationperiod.getDays() == 0) {
+            CasesReferPA.add(By.xpath("(//div[@class='powerapps-icon no-focus-outline'])["+PanNumber+"]"));
+            counterPA+=7;
+            PanNumber+=1;
+            SearchPACases();
+        }
+
+         if (PreActivationperiod.getDays() < 0) {
+            counterPA+=7;
+            PanNumber+=1;
+           SearchPACases();
+        }
+    }
+    public void SearchCasesAC(){
+        Switching();
+        wait.until(ExpectedConditions.textMatches(By.xpath("(//div[@spellcheck='false'])["+CounterAC+"]") , Pattern.compile("\\b([1-9]|1[0-2])/([1-9]|[12][0-9]|3[01])/(\\d{4})\\b")));
+        String dateActivation = driver.findElement(By.xpath("(//div[@spellcheck='false'])["+CounterAC+"]")).getText();
+        SwitchingOff();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate DateCase = LocalDate.parse(dateActivation , format);
+        Period Activationperiod = Period.between(DateCase , LocalDate.now());
+        if (Activationperiod.getDays() > 0){
+            return;
+        }
+        if (Activationperiod.getDays() == 0) {
+            CasesReferAC.add(By.xpath("(//div[@class='powerapps-icon no-focus-outline'])["+PanNumber+"]"));
+            CounterAC+=7;
+            PanNumber +=1;
+            SearchCasesAC();
+        }
+        if (Activationperiod.getDays() < 0) {
+            CounterAC+=7;
+            PanNumber +=1;
+            SearchCasesAC();
+        }
     }
 
-    public void GetSpecificCase() {
+    public  void EnterToSpecificCase(By PanIcon){
         Switching();
-        wait.until(ExpectedConditions.elementToBeClickable(PanIcon));
         driver.findElement(PanIcon).click();
         SwitchingOff();
     }
+
 
     public void DownloadFile() throws Exception {
         Thread.sleep(3500);
@@ -99,19 +150,26 @@ public class GetFile extends Preparation{
     public void Exit() {
         driver.quit();
     }
-
-    public void ExecuteGetFileMethods() throws Exception{
-        GetIdCase();
+    public void StartAppForPA() throws Exception{
         StartBrowser();
         GoToVCTool();
         InitiateVCTool();
         Thread.sleep(6000);
         EnterToCases();
-        IntroduceCase();
-        GetSpecificCase();
-        DownloadFile();
-        ShowFile();
-        Thread.sleep(1000);
-        Exit();
+        SearchPACases();
+    }
+    public void StartAppForAC() throws Exception {
+        StartBrowser();
+        GoToVCTool();
+        InitiateVCTool();
+        Thread.sleep(6000);
+        EnterToCases();
+        SearchCasesAC();
+    }
+    public void ExecuteGetFileMethods() throws Exception{
+         DownloadFile();
+         ShowFile();
+         Thread.sleep(1000);
+         Exit();
     }
 }

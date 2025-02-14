@@ -8,8 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.Map;
+
 
 
 public class DataExtraction {
@@ -19,6 +18,7 @@ public class DataExtraction {
     private static Sheet PlanesSheet;
     private static Cell SfidCell;
     private static String Sfid;
+    private static String Plan;
     private static Cell cellLine;
     private static Cell cellCuenta;
     private static Cell cellExtension;
@@ -61,8 +61,6 @@ public class DataExtraction {
         public static File getFile(){
         return RevisionFile;
         }
-
-
 
     public void ExtractNumeroMovil(){
         ExtractSfid();
@@ -174,8 +172,11 @@ public class DataExtraction {
         }
         return TarjetaSim;
     }
-    public static Map<String , String> extractPlanDeGsm() {
-        Map<String, String> PlanAndCatalogo = new HashMap<>();
+    public static String getPlanDeGSM(){
+        return Plan;
+    }
+    public static String extractCatalagoDePlan() {
+        String Catalogo="";
         Cell cellInPlanSheet;
         OuterLoop:
         for (Row row : RevisionSheet) {
@@ -188,8 +189,9 @@ public class DataExtraction {
                                     cellInPlanSheet = rowPlan.getCell(0);
                                     if (cellInPlanSheet != null) {
                                         if (cellInPlanSheet.toString().equals(PlanCell.toString())) {
-                                            PlanAndCatalogo.put(PlanCell.toString(), rowPlan.getCell(1).getStringCellValue());
+                                            Plan = PlanCell.toString();
                                             cellPlan = PlanCell;
+                                            Catalogo = rowPlan.getCell(1).getStringCellValue();
                                             break OuterLoop;
                                         }
                                     }
@@ -200,7 +202,7 @@ public class DataExtraction {
                 }
             }
         }
-    return PlanAndCatalogo;
+    return Catalogo;
     }
 
     public static String extractPerfilDeConsumo(){

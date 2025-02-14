@@ -25,10 +25,8 @@ public class Preparation {
         int i = 3;
         String FakeLine = "666666666";
         while (i > 0) {
-
             //Show the system
             clarify.ShowClarify();
-
             //Press on Select
             Thread.sleep(500);
             Bot.mouseMove(226, 37);

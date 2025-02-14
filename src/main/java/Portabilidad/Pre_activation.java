@@ -1,17 +1,17 @@
 package Portabilidad;
 
+import dev.failsafe.function.CheckedRunnable;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-
+import org.sikuli.script.Screen;
+import org.sikuli.script.Pattern;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 
 
@@ -21,6 +21,8 @@ public class Pre_activation extends Preparation {
     private String Cuentas;
     private String AccountNumber;
     private static String LineaError;
+    private final Screen SysScreen = new Screen();
+    private final Pattern ErrorReservaImage = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\ErrorReservaLinea.png");
 
     public Pre_activation() throws Exception {
         clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -96,7 +98,7 @@ public class Pre_activation extends Preparation {
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         //Clean Message Error
-        Thread.sleep(600);
+        Thread.sleep(2000);
         getRobot().mouseMove(670, 465);
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -170,7 +172,7 @@ public class Pre_activation extends Preparation {
 
     @SuppressWarnings({"probably busy-waiting", "BusyWait"})
     public void SearchAndSelectCuenta() throws Exception {
-        Pattern CuentaPattern = Pattern.compile("\\d{8}");
+        java.util.regex.Pattern CuentaPattern = java.util.regex.Pattern.compile("\\d{8}");
         Matcher CuentaMatch = CuentaPattern.matcher(Cuentas);
         int CuentaPosition = -1;
         boolean IsCuenta = false;
@@ -231,6 +233,288 @@ public class Pre_activation extends Preparation {
         getRobot().mouseMove(971, 663);
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+    public void FixErrorReserva() throws Exception{
+        getRobot().mouseMove(669 , 466);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseMove(556 , 200);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(600);
+        getRobot().mouseMove(726 , 320);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(200);
+        getRobot().keyPress(KeyEvent.VK_CONTROL);
+        getRobot().keyPress(KeyEvent.VK_C);
+        getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        getRobot().keyRelease(KeyEvent.VK_C);
+        Thread.sleep(200);
+        getRobot().mouseMove(778 , 743);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(200);
+        getRobot().keyPress(KeyEvent.VK_CONTROL);
+        getRobot().keyPress(KeyEvent.VK_V);
+        getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        getRobot().keyRelease(KeyEvent.VK_V);
+        Thread.sleep(200);
+        getRobot().mouseMove(886 , 735);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(15000);
+        getRobot().mouseMove(62 , 137);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(100);
+        getRobot().mouseMove(113 , 279);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseMove(1286 , 487);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(2000);
+        getRobot().mouseMove(355 , 274);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        for(char Letter : LineaError.toCharArray()){
+            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
+        }
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().keyPress(KeyEvent.VK_CONTROL);
+        getRobot().keyPress(KeyEvent.VK_C);
+        getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        getRobot().keyRelease(KeyEvent.VK_C);
+        Thread.sleep(200);
+        getRobot().mouseMove(563 , 273);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(200);
+        getRobot().keyPress(KeyEvent.VK_CONTROL);
+        getRobot().keyPress(KeyEvent.VK_V);
+        getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        getRobot().keyRelease(KeyEvent.VK_V);
+        Thread.sleep(200);
+        getRobot().mouseMove(582 , 324);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        String LinePrefix = "";
+        String LineRango = "";
+        for(int i = 0; i < 5; i++){
+            if (i <= 2) {
+                LinePrefix += LineaError.charAt(i);
+            }
+            if(i >= 3){
+                LineRango += LineaError.charAt(i);
+            }
+        }
+        System.out.println(LineRango);
+        System.out.println(LinePrefix);
+        if(LinePrefix.startsWith("5")){
+            getRobot().keyPress(KeyEvent.VK_DOWN);
+            getRobot().keyRelease(KeyEvent.VK_DOWN);
+        }
+        if(LinePrefix.startsWith("6")) {
+            int Prefix = Integer.parseInt(LinePrefix);
+            if (Prefix > 605) {
+                getRobot().mouseMove(585 , 435);
+                for (int coun = 0; coun < Prefix - 605; coun++) {
+                    Thread.sleep(50);
+                    getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                    getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                }
+                getRobot().mouseMove(535 , 439);
+                Thread.sleep(100);
+                getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            }
+        }
+        if(LinePrefix.startsWith("600")){
+            getRobot().mouseMove(531 , 370);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LinePrefix.startsWith("601")){
+            getRobot().mouseMove(531 , 382);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LinePrefix.startsWith("602")) {
+            getRobot().mouseMove(531, 399);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LinePrefix.startsWith("603")){
+            getRobot().mouseMove(531 , 423);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LinePrefix.startsWith("604")){
+            getRobot().mouseMove(531 , 419);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LinePrefix.startsWith("605")){
+            getRobot().mouseMove(531 , 435);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+
+        if(LinePrefix.startsWith("711")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+        }
+        if(LinePrefix.startsWith("717")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+        }
+        if(LinePrefix.startsWith("722")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+        }
+        if(LinePrefix.startsWith("727")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+        }
+        if(LinePrefix.startsWith("744")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+        }
+
+        if(LinePrefix.startsWith("747")){
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+            getRobot().keyRelease(KeyEvent.VK_7);
+            getRobot().keyPress(KeyEvent.VK_7);
+        }
+        getRobot().mouseMove(817 , 324);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        if(LineRango.equals("56")){
+            getRobot().keyPress(KeyEvent.VK_DOWN);
+            getRobot().keyRelease(KeyEvent.VK_DOWN);
+        }
+        if(LineRango.equals("00")){
+            getRobot().mouseMove(784 , 345);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("01")){
+            getRobot().mouseMove(784 , 356);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("02")){
+            getRobot().mouseMove(784 , 370);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("03")){
+            getRobot().mouseMove(784 , 384);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("04")){
+            getRobot().mouseMove(784 , 395);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("05")){
+            getRobot().mouseMove(784 , 410);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("06")){
+            getRobot().mouseMove(784 , 422);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        if(LineRango.equals("07")){
+            getRobot().mouseMove(784 , 435);
+            Thread.sleep(100);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        int Range = Integer.parseInt(LineRango);
+        if(Range > 7){
+            getRobot().mouseMove(817, 437);
+            for(int i =0; i < Range-7; i++){
+                Thread.sleep(50);
+                getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            }
+            getRobot().mouseMove(793, 437);
+            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }
+        Thread.sleep(200);
+        getRobot().mouseMove(993, 324);
+//        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(1000);
+        getRobot().mouseMove(335, 423);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(200);
+        getRobot().mouseMove(1475, 597);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseMove(1481, 760);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseMove(1269, 760);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseMove(65, 135);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(500);
+        getRobot().mouseMove(101, 264);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Thread.sleep(600);
+        getRobot().mouseMove(820, 206);
+        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        PressOnContinuar();
     }
 
     public void IntroduceSfid() throws Exception {
@@ -301,11 +585,8 @@ public class Pre_activation extends Preparation {
     }
 
     public void SelectCatalogo() throws Exception {
-        String Catalogo = "";
-        for (Map.Entry<String, String> map : DataExtraction.extractPlanDeGsm().entrySet()) {
-            Catalogo = map.getValue();
-            break;
-        }
+        String Catalogo = DataExtraction.extractCatalagoDePlan();
+
         getRobot().mouseMove(1116, 444);
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -352,23 +633,19 @@ public class Pre_activation extends Preparation {
         Thread.sleep(1000);
         Transferable Planes = clipboard.getContents(null);
         String PlanesEnCatalogo = (String) Planes.getTransferData(DataFlavor.stringFlavor);
-        String Plan = "";
+
 
         int CoordinateX = 861;
         int CoordinateY = 494;
 
-        for (Map.Entry<String, String> map : DataExtraction.extractPlanDeGsm().entrySet()) {
-            Plan = map.getKey();
-            break;
-        }
-        Pattern PlanPattern = Pattern.compile("[A-Z]{5}");
+        java.util.regex.Pattern PlanPattern = java.util.regex.Pattern.compile("[A-Z]{5}");
         Matcher PlanMatch = PlanPattern.matcher(PlanesEnCatalogo);
         getRobot().mouseMove(861, 494);
         Thread.sleep(1000);
         while (PlanMatch.find()) {
             if (CoordinateY < 615) {
                 CoordinateY += 14;
-                if (PlanMatch.group().equals(Plan)) {
+                if (PlanMatch.group().equals(DataExtraction.getPlanDeGSM())) {
 
                     getRobot().mouseMove(CoordinateX, CoordinateY);
                     getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -381,16 +658,15 @@ public class Pre_activation extends Preparation {
             }
 
             if (CoordinateY > 615) {
-                System.out.println(PlanMatch.group() + " " + Plan);
-                if (PlanMatch.group().equals(Plan)) {
-                    Thread.sleep(2000);
+                if (PlanMatch.group().equals(DataExtraction.getPlanDeGSM())) {
+                    Thread.sleep(100);
                     getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
                     getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                     getRobot().keyPress(KeyEvent.VK_ENTER);
                     getRobot().keyRelease(KeyEvent.VK_ENTER);
                     break;
                 } else {
-                    Thread.sleep(2000);
+                    Thread.sleep(100);
                     getRobot().mouseMove(CoordinateX, CoordinateY);
                     getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
                     getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -466,7 +742,6 @@ public class Pre_activation extends Preparation {
          getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
-
     public void FixError() throws Exception{
         Cell ErrorCell;
         for (Row row : DataExtraction.GetResultSheet()) {
@@ -485,14 +760,18 @@ public class Pre_activation extends Preparation {
                 IntroduceTheLineNumber();
                 IntroduceExtension();
                 PressOnContinuar();
-                IntroduceSfid();
-                IntroduceTarjetaSim();
-                SelectRoaming();
-                SelectCatalogo();
-                SelectPlan();
-                SelectPerfilDeConsumo();
-                PressOnActivar();
-                CleanScreen();
+                Thread.sleep(1000);
+                if(SysScreen.has(ErrorReservaImage)){
+                    FixErrorReserva();
+                }
+//                IntroduceSfid();
+//                IntroduceTarjetaSim();
+//                SelectRoaming();
+//                SelectCatalogo();
+//                SelectPlan();
+//                SelectPerfilDeConsumo();
+//                PressOnActivar();
+//                CleanScreen();
             }
         }
     }
