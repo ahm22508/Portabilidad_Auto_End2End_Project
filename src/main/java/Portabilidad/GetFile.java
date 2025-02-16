@@ -71,6 +71,14 @@ public class GetFile extends Preparation{
         actions.keyDown(Keys.TAB).build().perform();
         actions.keyDown(Keys.ENTER).build().perform();
     }
+    public void FilterWithMovil(){
+    Switching();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='filtero por Tipo']")));
+    driver.findElement(By.xpath("//span[text()='filtero por Tipo']")).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Móvil']")));
+    driver.findElement(By.xpath("//span[text()='Móvil']")).click();
+    SwitchingOff();
+    }
 
 
     public void SearchPACases(){
@@ -156,7 +164,8 @@ public class GetFile extends Preparation{
         InitiateVCTool();
         Thread.sleep(6000);
         EnterToCases();
-        SearchPACases();
+        FilterWithMovil();
+       // SearchPACases();
     }
     public void StartAppForAC() throws Exception {
         StartBrowser();
@@ -164,7 +173,8 @@ public class GetFile extends Preparation{
         InitiateVCTool();
         Thread.sleep(6000);
         EnterToCases();
-        SearchCasesAC();
+        FilterWithMovil();
+       // SearchCasesAC();
     }
     public void ExecuteGetFileMethods() throws Exception{
          DownloadFile();

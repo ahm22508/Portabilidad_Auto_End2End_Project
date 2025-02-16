@@ -31,7 +31,9 @@ public class Pre_activation extends Preparation {
     public static String getLineaError() {
         return LineaError;
     }
+    public void GetCif(){
 
+    }
     public void EnterToAccount() throws Exception {
         GetClarify().ShowClarify();
         Thread.sleep(300);
@@ -772,6 +774,8 @@ public class Pre_activation extends Preparation {
 //                SelectPerfilDeConsumo();
 //                PressOnActivar();
 //                CleanScreen();
+
+                //Here i will add new Code to log if the Preactivation process goes correct or not...
             }
         }
     }

@@ -14,29 +14,29 @@ public class Main {
         Pre_activation preactivar = new Pre_activation();
         FileLogging fileLog = new FileLogging();
         //PA Part:
-//               getFile.StartAppForPA();
-//
-//        for (int i = 0; i < GetFile.getCaseReferPA().size(); i++) {
-//               getFile.EnterToSpecificCase(GetFile.getCaseReferPA().get(i));
-//                getFile.ExecuteGetFileMethods();
-//                Handle.ExecuteFileHandlingMethods();666
-            prepare.prepareSystem();
-            Thread ExtractThread = new Thread(()->{
-                try {
-                    extract.GetOperationFile();
-                    extract.GetResultSheet();
-                    extract.GetPlanesSheet();
-                    extract.ExtractSfid();
-                    extract.ExtractNumeroMovil();
-                }
-                catch (Exception e){
-                    e.getCause();
-                }
-        });
-                    ExtractThread.start();
-                    ExtractThread.join();
-                  check.ExecuteCheckPAMethods();
-                  preactivar.FixError();
+               getFile.StartAppForPA();
+
+        for (int i = 0; i < GetFile.getCaseReferPA().size(); i++) {
+               getFile.EnterToSpecificCase(GetFile.getCaseReferPA().get(i));
+             //  getFile.ExecuteGetFileMethods();
+//                Handle.ExecuteFileHandlingMethods();
+//            prepare.prepareSystem();
+//            Thread ExtractThread = new Thread(()->{
+//                try {
+//                    extract.GetOperationFile();
+//                    extract.GetResultSheet();
+//                    extract.GetPlanesSheet();
+//                    extract.ExtractSfid();
+//                    extract.ExtractNumeroMovil();
+//                }
+//                catch (Exception e){
+//                    e.getCause();
+//                }
+//        });
+//                    ExtractThread.start();
+//                    ExtractThread.join();
+//                  check.ExecuteCheckPAMethods();
+//                  preactivar.FixError();
 
 //                fileLog.ExecuteFileLoggingMethods();
       //  }
@@ -58,4 +58,4 @@ public class Main {
 //            fileLog.ExecuteFileLoggingMethods();
         }
     }
-//}
+}
