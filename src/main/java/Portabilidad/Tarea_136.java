@@ -19,9 +19,9 @@ import java.io.FileOutputStream;
 
 public class Tarea_136 extends Check {
 
-   private final File Proceso136 = new File("C:\\Portabilidad_Auto_End2End\\data\\Proceso_136.xlsx");
-   private final FileInputStream openTheFile = new FileInputStream(Proceso136);
-   private final Workbook ProcesoWorkBook = new XSSFWorkbook(openTheFile);
+    private final File Proceso136 = new File("C:\\Portabilidad_Auto_End2End\\data\\Proceso_136.xlsx");
+    private final FileInputStream openTheFile = new FileInputStream(Proceso136);
+    private final Workbook ProcesoWorkBook = new XSSFWorkbook(openTheFile);
 
     public Tarea_136() throws Exception{
     }
@@ -30,7 +30,7 @@ public class Tarea_136 extends Check {
         clarify.ShowClarify();
         Thread.sleep(1000);
         Clipboard clipboard;
-       clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         getRobot().mouseMove(217, 35);
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
@@ -62,7 +62,7 @@ public class Tarea_136 extends Check {
         getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
         getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
-         return (String)Content.getTransferData(DataFlavor.stringFlavor);
+        return (String)Content.getTransferData(DataFlavor.stringFlavor);
     }
 
     public Sheet Hoja1Sheet(){
@@ -70,7 +70,6 @@ public class Tarea_136 extends Check {
         return ProcesoWorkBook.getSheet("Hoja1");
     }
     public void PopulateSheet(){
-        long StartTime = System.currentTimeMillis();
         int i = 0;
         for (Row row : DataExtraction.GetResultSheet()) {
             Cell ResultCell = row.getCell(2);
@@ -88,11 +87,15 @@ public class Tarea_136 extends Check {
                 Hoja1Sheet().getRow(i).createCell(12).setCellValue("Error Preactivacion");
                 Hoja1Sheet().getRow(i).createCell(13).setCellValue("Error Preactivacion");
                 Hoja1Sheet().getRow(i).createCell(14).setCellValue("Error");
-                Hoja1Sheet().getRow(i).createCell(15).setCellValue("V594458A");
-                long FinishTime = System.currentTimeMillis();
-                System.out.println(FinishTime - StartTime);
+                Hoja1Sheet().getRow(i).createCell(15).setCellValue("Third Try");
             }
         }
+    }
+    public void ChangeEXT() throws Exception{
+        String [] Commands = {"cmd" , "/c" ,"C:\\Portabilidad_Auto_End2End\\data\\Script.vbs"};
+        ProcessBuilder Process = new ProcessBuilder();
+        Process.command(Commands);
+        Process.start();
     }
     public void SaveFile() throws Exception{
         FileOutputStream FileSaving  = new FileOutputStream(Proceso136);
@@ -101,11 +104,10 @@ public class Tarea_136 extends Check {
     public void closeFile()throws Exception{
         ProcesoWorkBook.close();
     }
-        public void executeTarea_135methods()throws Exception{
+    public void executeTarea_135methods()throws Exception{
         PopulateSheet();
         SaveFile();
         closeFile();
-
-        }
-
+        ChangeEXT();
+    }
 }
