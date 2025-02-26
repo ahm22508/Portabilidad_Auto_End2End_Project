@@ -7,17 +7,17 @@ import java.awt.event.KeyEvent;
 public class Preparation {
 
     private final Robot Bot;
-    private final Clarify clarify;
+    private final Windows clarify;
 
     public Preparation() throws Exception{
         Bot = new Robot();
-        clarify = new Clarify();
+        clarify = new Windows();
     }
 
     public Robot getRobot() {
         return Bot;
     }
-    public Clarify GetClarify(){
+    public Windows GetClarify(){
         return clarify;
     }
 
@@ -26,7 +26,7 @@ public class Preparation {
         String FakeLine = "666666666";
         while (i > 0) {
             //Show the system
-            clarify.ShowClarify();
+            clarify.ShowWindow("Clarify");
             //Press on Select
             Thread.sleep(500);
             Bot.mouseMove(226, 37);

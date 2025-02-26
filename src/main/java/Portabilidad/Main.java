@@ -48,7 +48,7 @@ public class Main {
      //   for (int i = 0; i < GetFile.getCaseReferAC().size(); i++) {
        //     getFile.EnterToSpecificCase(GetFile.getCaseReferAC().get(i));
 //            getFile.ExecuteGetFileMethods();
-//            Handle.ExecuteFileHandlingMethods();666666
+//            Handle.ExecuteFileHandlingMethods();
 //            prepare.prepareSystem();
 //            extract.GetOperationFile();
 //            extract.GetResultSheet();
@@ -56,6 +56,8 @@ public class Main {
 //            extract.ExtractNumeroMovil();
 //            check.ExecuteCheckACMethods();
 //            fileLog.ExecuteFileLoggingMethods();
+
+            MaintainingPCActive.MoveMouseTill9AM();
         }
     }
 }

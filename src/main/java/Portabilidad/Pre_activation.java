@@ -1,6 +1,5 @@
 package Portabilidad;
 
-import dev.failsafe.function.CheckedRunnable;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.sikuli.script.Screen;
@@ -31,11 +30,8 @@ public class Pre_activation extends Preparation {
     public static String getLineaError() {
         return LineaError;
     }
-    public void GetCif(){
 
-    }
     public void EnterToAccount() throws Exception {
-        GetClarify().ShowClarify();
         Thread.sleep(300);
         //Press on Select
         getRobot().mouseMove(217, 35);
