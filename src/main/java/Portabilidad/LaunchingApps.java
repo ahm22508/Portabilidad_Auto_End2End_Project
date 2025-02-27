@@ -27,7 +27,7 @@ public class LaunchingApps {
   private final Workbook CredentialsCitrix = new XSSFWorkbook(OpenFile);
   private final Sheet Credentials = CredentialsCitrix.getSheet("CredentialOfCitrix");
   private final Screen PCscreen = new Screen();
-  private final Robot Bot = new Robot();
+  private final robot Bot = robot.getBotInstance();
 
   public LaunchingApps() throws Exception {
   }
@@ -87,33 +87,33 @@ public class LaunchingApps {
     }
     public void LoginToGescore() throws Exception{
       Thread.sleep(1500);
-      Bot.keyPress(KeyEvent.VK_CONTROL);
-      Bot.keyPress(KeyEvent.VK_T);
-      Bot.keyRelease(KeyEvent.VK_CONTROL);
-      Bot.keyRelease(KeyEvent.VK_T);
+      Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+      Bot.getRobot().keyPress(KeyEvent.VK_T);
+      Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+      Bot.getRobot().keyRelease(KeyEvent.VK_T);
       Thread.sleep(1000);
-      Bot.mouseMove(275, 50);
-      Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-      Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseMove(275, 50);
+      Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
       Thread.sleep(900);
       PCscreen.type("https://10.167.218.11/gescoresuitedashboard/");
-      Bot.keyPress(KeyEvent.VK_ENTER);
-      Bot.keyRelease(KeyEvent.VK_ENTER);
+      Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+      Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
       Thread.sleep(10000);
-      Bot.mouseMove(380, 326);
-      Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-      Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseMove(380, 326);
+      Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
       for (char Letter : GetUserName().toCharArray()) {
-        Bot.keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
+        Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
       }
       Thread.sleep(200);
-      Bot.mouseMove(385, 396);
-      Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-      Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseMove(385, 396);
+      Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
       PCscreen.type(GetPassword());
-      Bot.mouseMove(354, 445);
-      Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-      Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseMove(354, 445);
+      Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+      Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
     public void OpenGescore() throws Exception {
           Thread.sleep(90000);
@@ -133,10 +133,10 @@ public class LaunchingApps {
       PCscreen.click("C:\\Portabilidad_Auto_End2End\\img\\CloseGmms.png");
     }
     public void CleanScreen(){
-      Bot.keyPress(KeyEvent.VK_WINDOWS);
-      Bot.keyPress(KeyEvent.VK_M);
-      Bot.keyRelease(KeyEvent.VK_WINDOWS);
-      Bot.keyRelease(KeyEvent.VK_M);
+      Bot.getRobot().keyPress(KeyEvent.VK_WINDOWS);
+      Bot.getRobot().keyPress(KeyEvent.VK_M);
+      Bot.getRobot().keyRelease(KeyEvent.VK_WINDOWS);
+      Bot.getRobot().keyRelease(KeyEvent.VK_M);
     }
 
     public void ExecuteLaunchingAppMethods() throws Exception{

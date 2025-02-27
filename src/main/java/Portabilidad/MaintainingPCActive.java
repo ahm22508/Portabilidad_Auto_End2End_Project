@@ -1,14 +1,22 @@
 package Portabilidad;
 
-import java.awt.*;
 import java.awt.event.InputEvent;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MaintainingPCActive {
+    private final static robot Bot;
+    static {
+        try {
+         Bot = robot.getBotInstance();
+        }
+        catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
-    public MaintainingPCActive(){
+    public MaintainingPCActive() {
 
     }
     public static void MoveMouseTill9AM(){
@@ -16,7 +24,6 @@ public class MaintainingPCActive {
         TimerTask MyTask = new TimerTask() {
             @Override
             public void run() {
-                try{
                     Calendar calendar = Calendar.getInstance();
                    int hr  = calendar.get(Calendar.HOUR_OF_DAY);
                    int mm = calendar.get(Calendar.MINUTE);
@@ -24,18 +31,13 @@ public class MaintainingPCActive {
                        System.exit(130);
                    }
                    else {
-                       Robot robot = new Robot();
-                       robot.mouseMove(500 , 500);
-                       robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-                       robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                       robot.mouseMove(600 , 600);
-                       robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-                       robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                       Bot.getRobot().mouseMove(500 , 500);
+                       Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                       Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+                       Bot.getRobot().mouseMove(600 , 600);
+                       Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+                       Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                    }
-                }
-                catch (Exception e){
-                    e.getCause();
-                }
             }
 
         };

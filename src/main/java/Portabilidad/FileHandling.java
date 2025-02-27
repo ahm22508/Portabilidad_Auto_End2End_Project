@@ -8,8 +8,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class FileHandling extends Check {
-
+public class FileHandling {
+    private final robot Bot = robot.getBotInstance();
 
     public FileHandling() throws Exception {
 
@@ -18,19 +18,19 @@ public class FileHandling extends Check {
     public void RenameFile() throws Exception {
         String FileName = "Operation";
         Thread.sleep(4000);
-        getRobot().keyPress(KeyEvent.VK_F2);
-        getRobot().keyRelease(KeyEvent.VK_F2);
+        Bot.getRobot().keyPress(KeyEvent.VK_F2);
+        Bot.getRobot().keyRelease(KeyEvent.VK_F2);
         Thread.sleep(500);
         for (char letter : FileName.toCharArray()) {
-            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(letter));
+            Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(letter));
         }
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(100);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_X);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_X);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_X);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_X);
     }
 
     public void MoveFile() throws Exception {
@@ -39,13 +39,13 @@ public class FileHandling extends Check {
         proc.command(Cd);
         proc.start();
         Thread.sleep(6000);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_V);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_V);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_V);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_V);
         Thread.sleep(1000);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
 
     public void OpenFile() throws Exception {
@@ -55,9 +55,9 @@ public class FileHandling extends Check {
         proc.command(Command);
         proc.start();
         Thread.sleep(12000);
-        getRobot().mouseMove(794, 90);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(794, 90);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
     }
 
     //Revision Code.
@@ -76,75 +76,75 @@ public class FileHandling extends Check {
    // Review Code.
     public void SearchToSheet() throws Exception {
         Thread.sleep(700);
-        getRobot().keyPress(KeyEvent.VK_F5);
-        getRobot().keyRelease(KeyEvent.VK_F5);
+        Bot.getRobot().keyPress(KeyEvent.VK_F5);
+        Bot.getRobot().keyRelease(KeyEvent.VK_F5);
         Thread.sleep(500);
         for (char letter : FileIterator().toCharArray()) {
             Thread.sleep(100);
-            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(letter));
+            Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(letter));
         }
-        getRobot().keyPress(KeyEvent.VK_SHIFT);
-        getRobot().keyPress(KeyEvent.VK_1);
-        getRobot().keyRelease(KeyEvent.VK_SHIFT);
-        getRobot().keyRelease(KeyEvent.VK_1);
-        getRobot().keyPress(KeyEvent.VK_A);
-        getRobot().keyPress(KeyEvent.VK_1);
+        Bot.getRobot().keyPress(KeyEvent.VK_SHIFT);
+        Bot.getRobot().keyPress(KeyEvent.VK_1);
+        Bot.getRobot().keyRelease(KeyEvent.VK_SHIFT);
+        Bot.getRobot().keyRelease(KeyEvent.VK_1);
+        Bot.getRobot().keyPress(KeyEvent.VK_A);
+        Bot.getRobot().keyPress(KeyEvent.VK_1);
         Thread.sleep(200);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
 
     public void TransformFileToText() throws Exception {
         Thread.sleep(1000);
-        getRobot().mouseMove(355, 62);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(355, 62);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(1000);
-        getRobot().mouseMove(90, 140);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(90, 140);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(500);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(17000);
-        getRobot().mouseMove(510, 240);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(510, 240);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(500);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_A);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_A);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_A);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_A);
         Thread.sleep(500);
-        getRobot().mouseMove(577, 58);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(577, 58);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(500);
-        getRobot().mouseMove(572, 281);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(572, 281);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(500);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
 
     public void UpdateAndSaveFile() throws Exception {
         Thread.sleep(1000);
-        getRobot().mouseMove(19, 75);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(19, 75);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(9000);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_S);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_S);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_S);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_S);
         Thread.sleep(800);
-        getRobot().mouseMove(1510, 22);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(1510, 22);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(500);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
 
    public void ExecuteFileHandlingMethods() throws Exception{

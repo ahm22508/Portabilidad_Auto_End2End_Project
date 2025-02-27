@@ -1,24 +1,16 @@
 package Portabilidad;
 
-import java.awt.*;
+
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Preparation {
 
-    private final Robot Bot;
-    private final Windows clarify;
+    private final robot Bot = robot.getBotInstance();
 
-    public Preparation() throws Exception{
-        Bot = new Robot();
-        clarify = new Windows();
-    }
+    private final Windows clarify = new Windows();
 
-    public Robot getRobot() {
-        return Bot;
-    }
-    public Windows GetClarify(){
-        return clarify;
+    public Preparation() throws Exception {
     }
 
     public void prepareSystem() throws  Exception{
@@ -29,35 +21,35 @@ public class Preparation {
             clarify.ShowWindow("Clarify");
             //Press on Select
             Thread.sleep(500);
-            Bot.mouseMove(226, 37);
-            Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(226, 37);
+            Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             //press on Servicios
             Thread.sleep(500);
-            Bot.mouseMove(246, 654);
-            Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(246, 654);
+            Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             //press on Identificador de Servicio
-            Bot.mouseMove(1183, 254);
-            Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(1183, 254);
+            Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             Thread.sleep(500);
             for(char digit : FakeLine.toCharArray()){
-                Bot.keyPress(KeyEvent.getExtendedKeyCodeForChar(digit));
+                Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(digit));
             }
             //Press on Buscar
-            Bot.mouseMove(1476, 464);
-            Bot.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(1476, 464);
+            Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
             //Press on OK
             Thread.sleep(500);
-            Bot.mouseMove(764, 475);
-            Bot.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(764, 475);
+            Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
             //Press on Cerrar Button.
-            Bot.mouseMove(977, 764);
-            Bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            Bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseMove(977, 764);
+            Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
             i--;
         }
     }

@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 
-public class Tarea_136 extends Check {
+public class Tarea_136 {
 
     private final File Proceso136 = new File("C:\\Portabilidad_Auto_End2End\\data\\Proceso_136.xlsx");
     private final FileInputStream openTheFile = new FileInputStream(Proceso136);
@@ -25,6 +25,7 @@ public class Tarea_136 extends Check {
     private final ProcessBuilder Process = new ProcessBuilder();
     private final Screen pcScreen = new Screen();
     private final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    private final robot Bot = robot.getBotInstance();
 
     public Tarea_136() throws Exception{
     }
@@ -32,35 +33,35 @@ public class Tarea_136 extends Check {
 
     public String getCif() throws Exception{
         Thread.sleep(1000);
-        getRobot().mouseMove(217, 35);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseMove(284, 232);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().delay(1000);
-        getRobot().mouseMove(466, 316);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(217, 35);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(284, 232);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().delay(1000);
+        Bot.getRobot().mouseMove(466, 316);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         for(char Letter : DataExtraction.GetCuenta().toCharArray()){
-            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
+            Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
         }
-        getRobot().mouseMove(1466, 485);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().delay(1000);
-        getRobot().mouseMove(452 , 544);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(1466, 485);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().delay(1000);
+        Bot.getRobot().mouseMove(452 , 544);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(200);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_C);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_C);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_C);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_C);
         Transferable Content = clipboard.getContents(null);
-        getRobot().mouseMove(1481 , 760);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(1481 , 760);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
         return (String)Content.getTransferData(DataFlavor.stringFlavor);
     }
@@ -112,57 +113,57 @@ public class Tarea_136 extends Check {
     public void ChangeToText() throws Exception{
         String Text = "Text";
         Thread.sleep(8000);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(2000);
-        getRobot().mouseMove(749 , 476);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_A);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_A);
+        Bot.getRobot().mouseMove(749 , 476);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_A);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_A);
         Thread.sleep(200);
-        getRobot().mouseMove(794 , 100);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(794 , 100);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         for(char Letter : Text.toCharArray()){
-            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
+            Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
         }
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(500);
-        getRobot().mouseMove(323 , 262);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(323 , 262);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
     public void CopyFileContent()throws Exception{
         Thread.sleep(200);
-        getRobot().mouseMove(52 , 245);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_A);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_A);
+        Bot.getRobot().mouseMove(52 , 245);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_A);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_A);
         Thread.sleep(200);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_C);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_C);
-        getRobot().keyPress(KeyEvent.VK_ALT);
-        getRobot().keyPress(KeyEvent.VK_F4);
-        getRobot().keyRelease(KeyEvent.VK_ALT);
-        getRobot().keyRelease(KeyEvent.VK_F4);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_C);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_C);
+        Bot.getRobot().keyPress(KeyEvent.VK_ALT);
+        Bot.getRobot().keyPress(KeyEvent.VK_F4);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ALT);
+        Bot.getRobot().keyRelease(KeyEvent.VK_F4);
         Thread.sleep(1000);
-        getRobot().keyPress(KeyEvent.VK_TAB);
-        getRobot().keyRelease(KeyEvent.VK_TAB);
+        Bot.getRobot().keyPress(KeyEvent.VK_TAB);
+        Bot.getRobot().keyRelease(KeyEvent.VK_TAB);
         Thread.sleep(500);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
     public void OpenWindowsExplorer() throws FindFailed {
         Pattern WindowExplorer = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\Windows Explorer.png");
@@ -176,65 +177,65 @@ public class Tarea_136 extends Check {
          Pattern AfouadsDir = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\AfouadsDir.png");
          pcScreen.doubleClick(AfouadsDir);
          Thread.sleep(800);
-        getRobot().mouseMove(374 , 322);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(374 , 322);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
     }
     public void ToText() throws Exception{
         Thread.sleep(4500);
-        getRobot().mouseMove(21 , 197);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(21 , 197);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(200);
-        getRobot().mouseMove(777 , 69);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(777 , 69);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(300);
-        getRobot().mouseMove(710 , 548);
+        Bot.getRobot().mouseMove(710 , 548);
         Thread.sleep(800);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
     public void PasteContent() throws Exception{
         Thread.sleep(200);
-        getRobot().mouseMove(50 , 208);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(50 , 208);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(100);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_V);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_V);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_V);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_V);
     }
     public void saveSheet() throws Exception{
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_G);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_G);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_G);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_G);
         Thread.sleep(400);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
         Thread.sleep(200);
-        getRobot().keyPress(KeyEvent.VK_ALT);
-        getRobot().keyPress(KeyEvent.VK_F4);
-        getRobot().keyRelease(KeyEvent.VK_ALT);
-        getRobot().keyRelease(KeyEvent.VK_F4);
+        Bot.getRobot().keyPress(KeyEvent.VK_ALT);
+        Bot.getRobot().keyPress(KeyEvent.VK_F4);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ALT);
+        Bot.getRobot().keyRelease(KeyEvent.VK_F4);
         Thread.sleep(100);
-        getRobot().keyPress(KeyEvent.VK_TAB);
-        getRobot().keyRelease(KeyEvent.VK_TAB);
+        Bot.getRobot().keyPress(KeyEvent.VK_TAB);
+        Bot.getRobot().keyRelease(KeyEvent.VK_TAB);
         Thread.sleep(100);
-        getRobot().keyPress(KeyEvent.VK_ENTER);
-        getRobot().keyRelease(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyPress(KeyEvent.VK_ENTER);
+        Bot.getRobot().keyRelease(KeyEvent.VK_ENTER);
     }
     public void RestoreCitrixExplorer()throws Exception{
         Pattern PC = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\PC.png");
         pcScreen.click(PC);
         Thread.sleep(400);
-        getRobot().mouseMove(511 , 517);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(511 , 517);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Pattern Minimize = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\Minimize.png");
         pcScreen.click(Minimize);
     }
@@ -245,92 +246,92 @@ public class Tarea_136 extends Check {
         Pattern Gescore = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\Gescore.png");
         pcScreen.click(Gescore);
         Thread.sleep(2000);
-        getRobot().mouseMove(600 , 366);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(600 , 366);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(5000);
-        getRobot().mouseMove(230 , 98);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(230 , 98);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(2000);
-        getRobot().mouseMove(254 , 178);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(254 , 178);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(300);
-        getRobot().mouseMove(614 , 591);
+        Bot.getRobot().mouseMove(614 , 591);
         for(int i = 0; i < 4; i++){
-            getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         }
         Thread.sleep(500);
-        getRobot().mouseMove(274 , 594);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseMove(728 , 226);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(274 , 594);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(728 , 226);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(5000);
-        getRobot().mouseMove(522 , 294);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(522 , 294);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(200);
-        getRobot().mouseMove(654 , 188);
+        Bot.getRobot().mouseMove(654 , 188);
         Pattern Maximize = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\Maximize.png");
         pcScreen.mouseMove(Maximize);
         Thread.sleep(600);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
 
         for(int i =0; i < 60; i++){
             Thread.sleep(30);
-            getRobot().keyPress(KeyEvent.VK_DOWN);
-            getRobot().keyRelease(KeyEvent.VK_DOWN);
+            Bot.getRobot().keyPress(KeyEvent.VK_DOWN);
+            Bot.getRobot().keyRelease(KeyEvent.VK_DOWN);
         }
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
 
         Pattern RecycleBin = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\RecycleBin.png");
         pcScreen.click(RecycleBin);
         Pattern PC = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\PC.png");
         pcScreen.click(PC);
-        getRobot().mouseMove(336 , 546);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(336 , 546);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(400);
         Pattern Afouads = new Pattern("C:\\Portabilidad_Auto_End2End\\img\\AfouadsDir.png");
         pcScreen.doubleClick(Afouads);
         Thread.sleep(1500);
-        getRobot().mouseMove(507 , 46);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(507 , 46);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         String Hoja1 = "Hoja1";
         for(char Letter : Hoja1.toCharArray()) {
-            getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
+            Bot.getRobot().keyPress(KeyEvent.getExtendedKeyCodeForChar(Letter));
         }
         Thread.sleep(1500);
-        getRobot().mouseMove(258 , 124);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(258 , 124);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(2500);
-        getRobot().mouseMove(931 , 351);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(931 , 351);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(6000);
-        getRobot().mouseMove(951 , 304);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(951 , 304);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(6000);
-        getRobot().mouseMove(532 , 202);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(532 , 202);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(600);
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_C);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_C);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_C);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_C);
         Thread.sleep(900);
     }
     public String getIDCarga() throws Exception{
@@ -345,14 +346,14 @@ public class Tarea_136 extends Check {
         return idCarga ;
     }
     public void refreshAndClean() throws Exception{
-        getRobot().keyPress(KeyEvent.VK_CONTROL);
-        getRobot().keyPress(KeyEvent.VK_R);
-        getRobot().keyRelease(KeyEvent.VK_CONTROL);
-        getRobot().keyRelease(KeyEvent.VK_R);
+        Bot.getRobot().keyPress(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyPress(KeyEvent.VK_R);
+        Bot.getRobot().keyRelease(KeyEvent.VK_CONTROL);
+        Bot.getRobot().keyRelease(KeyEvent.VK_R);
         Thread.sleep(6000);
-        getRobot().mouseMove(721 , 92);
-        getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(721 , 92);
+        Bot.getRobot().mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
     public void executeTarea_135methods()throws Exception{

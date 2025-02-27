@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class GetFile extends Preparation{
+public class GetFile{
 
 
     private  WebDriverWait wait;
@@ -25,7 +25,7 @@ public class GetFile extends Preparation{
     private final By IniciarButton = By.xpath("//div[@class='appmagic-button-label no-focus-outline']");
     private static final ArrayList <By> CasesReferPA = new ArrayList<>();
     private static final ArrayList <By> CasesReferAC = new ArrayList<>();
-
+    private final robot Bot = robot.getBotInstance();
 
     public GetFile() throws Exception {
     }
@@ -138,21 +138,21 @@ public class GetFile extends Preparation{
 
     public void DownloadFile() throws Exception {
         Thread.sleep(3500);
-        getRobot().mouseMove(1331, 786);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(1331, 786);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
         Thread.sleep(1500);
-        getRobot().mouseMove(441, 516);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseMove(441, 516);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
     }
 
     public void ShowFile() throws Exception {
         Thread.sleep(4500);
-        getRobot().mouseMove(1302, 134);
+        Bot.getRobot().mouseMove(1302, 134);
         Thread.sleep(1000);
-        getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
-        getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+        Bot.getRobot().mouseRelease(KeyEvent.BUTTON1_DOWN_MASK);
     }
 
     public void Exit() {
